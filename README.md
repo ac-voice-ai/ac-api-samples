@@ -12,6 +12,8 @@ The servers are written in Typescript.
 
 * [Speech-to-Text API](ac-stt-api) \[[API documentation](https://techdocs.audiocodes.com/voice-ai-connect/#VAIG_API/Speech-to-Text.htm)\]:
   A simple server that accepts websocket connections and sends pre-set transcriptions to the client.
+* [Bot API](ac-bot-api) \[[API documentation](https://techdocs.audiocodes.com/voice-ai-connect/#VAIG_API/API_1.htm)\]:
+  A server that echos incoming messages. It also supports pre-defined replies like "disconnect", which hangs up.
 
 ## License
 

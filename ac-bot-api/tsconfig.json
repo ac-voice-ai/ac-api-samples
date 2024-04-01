@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictBindCallApply": true,
+    "module": "NodeNext",
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "composite": true,
+    "incremental": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "baseUrl": "src"
+  },
+  "include": [
+    "src/**/*.ts"
+  ]
+}
