@@ -38,10 +38,10 @@ class SttSession {
 
   send(message: Record<string, unknown>) {
     const msg = JSON.stringify(message);
-    if (logSent)
-      logger.info('sending: ', msg);
     if (this.ws.readyState !== WebSocket.OPEN)
       return Promise.resolve();
+    if (logSent)
+      logger.info('sending: ', msg);
     return new Promise<void>((resolve, reject) => this.ws.send(msg, {}, (err) => {
       if (err)
         reject(err);
