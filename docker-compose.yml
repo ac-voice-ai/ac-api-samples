@@ -1,0 +1,18 @@
+services:
+  bot:
+    image: ac-bot-api:latest
+    build: ac-bot-api
+    restart: always
+    environment:
+      ACCESS_TOKEN:
+    ports:
+      - 8083:8083
+  stt:
+    image: ac-stt-api:latest
+    build: ac-stt-api
+    restart: always
+    environment:
+      LOG_SENT:
+      LOG_RECEIVED:
+    ports:
+      - 8040:8040
