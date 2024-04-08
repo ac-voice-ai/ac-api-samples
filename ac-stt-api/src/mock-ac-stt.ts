@@ -6,6 +6,7 @@
 import WebSocket, { WebSocketServer } from 'ws';
 import express from 'express';
 import http from 'http';
+import path from 'path';
 import { setTimeout as sleep } from 'timers/promises';
 
 const logger = console;
@@ -127,6 +128,10 @@ const sttApp = express();
 sttApp.use(express.json());
 const sttServer = http.createServer(sttApp);
 sttServer.keepAliveTimeout = 30000;
+
+sttApp.post('/tts', (_req, res) => {
+  res.sendFile(path.resolve(__dirname, 'tts-16k.wav'));
+});
 
 const sttWs = new WebSocketServer({
   perMessageDeflate: false,
