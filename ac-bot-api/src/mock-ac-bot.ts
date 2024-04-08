@@ -28,6 +28,11 @@ interface CreateConversationResponse {
 const port = 8083;
 const accessToken = process.env.ACCESS_TOKEN || 'TOKEN';
 
+const StartResponse = {
+  type: 'message',
+  text: 'Welcome'
+};
+
 const HangupResponse = [{
   type: 'message',
   text: 'Disconnecting'
@@ -40,9 +45,11 @@ const HangupResponse = [{
 }];
 
 function getResponses(activity: any) {
+  if (activity.type === 'event' && activity.name === 'start')
+    return [StartResponse];
   if (activity.type === 'message' && activity.text === 'disconnect')
     return HangupResponse;
-  return activity;
+  return Array.isArray(activity) ? activity : [activity];
 }
 
 const app = express();
@@ -170,7 +177,7 @@ app.post('/conversation/:conversationId/activities', (req, res) => {
 
   const responses = getResponses(activity);
   const responsesMap = new Map<number, any[]>();
-  responses.forEach((response: any) => {
+  for (const response of responses) {
     const delay = response.delay ? response.delay : 0;
     const responseCopy = { ...response };
     delete responseCopy.delay;
@@ -182,7 +189,7 @@ app.post('/conversation/:conversationId/activities', (req, res) => {
       responsesMap.set(delay, responsesArr);
     }
     responsesArr.push(responseCopy);
-  });
+  };
 
   let immediateResponseBody = {};
   for (const [delay, responsesArr] of responsesMap.entries()) {
