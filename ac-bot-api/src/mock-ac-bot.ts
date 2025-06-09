@@ -8,6 +8,7 @@ import expressWs from 'express-ws';
 import ws from 'ws';
 import url from 'url';
 import parseBearerToken_ from 'parse-bearer-token';
+import { accessToken, verifyClientFunc } from './auth.js';
 const parseBearerToken = parseBearerToken_.default;
 
 interface Config {
@@ -26,7 +27,7 @@ interface CreateConversationResponse {
 }
 
 const port = 8083;
-const accessToken = process.env.ACCESS_TOKEN || 'TOKEN';
+
 
 const StartResponse = {
   type: 'message',
@@ -56,9 +57,6 @@ const app = express();
 app.use(express.json());
 const server = http.createServer(app);
 
-function verifyClientFunc(info: { origin: string; secure: boolean; req: express.Request }) {
-  return parseBearerToken(info.req) === accessToken;
-}
 const ews = expressWs(app, server, { wsOptions: { verifyClient: verifyClientFunc } });
 
 server.keepAliveTimeout = 30000;
