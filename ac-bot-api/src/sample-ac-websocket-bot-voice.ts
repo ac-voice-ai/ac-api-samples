@@ -200,7 +200,7 @@ class BotConversation {
     let mediaFormat = this.mediaFormat;
     if (!audioMessage) {
       // eslint-disable-next-line no-param-reassign
-      audioMessage = Buffer.from(await fsp.readFile(path.resolve(import.meta.dirname, 'static/ac-voice-silence.pcm')));
+      audioMessage = Buffer.from(await fsp.readFile(path.resolve(import.meta.dirname, 'static/ac-voice-silence.raw')));
       mediaFormat = welcomeMessageMediaFormat;
     }
     return this.sendActivity({
