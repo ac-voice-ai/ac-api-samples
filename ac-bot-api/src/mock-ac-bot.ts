@@ -78,7 +78,7 @@ app.use((req, res, next) => {
   if (bearerToken === accessToken)
     return next();
   logger.error(`Wrong token: ${bearerToken}`);
-  return res.sendStatus(401);
+  res.sendStatus(401);
 });
 
 class Conversation {
@@ -123,10 +123,12 @@ class Conversation {
   }
 }
 
-app.get('/CreateConversation', (_req, res) => res.send({
-  type: 'ac-bot-api',
-  success: true
-}));
+app.get('/CreateConversation', (_req, res) => {
+  res.send({
+    type: 'ac-bot-api',
+    success: true
+  });
+});
 
 app.post('/CreateConversation', async (req, res) => {
   const conversationId = req.body.conversation;
