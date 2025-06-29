@@ -9,6 +9,7 @@
     "start": "node dist/mock-ac-bot.js",
     "startWsText": "node dist/text-echo-bot.js",
     "startWsVoice": "node dist/voice-echo-bot.js",
+    "startOAI": "node dist/openai-bot.js",
     "copy-files": "copyfiles -f src/static/* dist/static/",
     "test": "true"
   },
@@ -16,7 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@audiocodes/ac-bot-api": "^0.1.0",
+    "@audiocodes/ac-bot-api": "^0.2.0",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "express-ws": "^5.0.2",
