@@ -58,7 +58,7 @@ class VoiceEchoBot {
     });
   }
 
-  handleActivity(activity: any) {
+  handleActivity(activity: BotActivity) {
     console.log('Received activity:', JSON.stringify(activity));
     if (activity.type === 'event') {
       if (activity.name === BotActivityEventName.start) {
