@@ -8,6 +8,7 @@
     "watch": "tsc -w",
     "start": "node dist/mock-ac-bot.js",
     "startWsText": "node dist/text-echo-bot.js",
+    "startTranscribe": "node dist/call-transcript-bot.js",
     "startWsVoice": "node dist/voice-echo-bot.js",
     "startOpenAI": "node dist/openai-bot.js",
     "copy-files": "copyfiles -f src/static/* dist/static/",
@@ -17,7 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@audiocodes/ac-bot-api": "^0.5.0",
+    "@audiocodes/ac-bot-api": "^0.6.0",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "express-ws": "^5.0.2",
