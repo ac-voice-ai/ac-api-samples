@@ -5,6 +5,8 @@ import {
   BotActivityEventName,
   BotActivityType
 } from '@audiocodes/ac-bot-api';
+import dotenv from 'dotenv';
+dotenv.config();
 
 class TextEchoBot {
   constructor(private botConversation: BotConversationWebSocket) {
@@ -38,7 +40,8 @@ class TextEchoBot {
 }
 
 const api = new BotApiWebSocket().listen({
-  port: 8081,
+  host:process.env.LISTEN_HOST || '0.0.0.0',
+  port: process.env.LISTEN_PORT ? parseInt(process.env.LISTEN_PORT, 10) : 8081,
   token: process.env.ACCESS_TOKEN || 'TOKEN'
 }, () => {
   console.info(`Bot API listening on port ${api.port}`);

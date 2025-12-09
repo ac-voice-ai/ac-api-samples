@@ -32,7 +32,8 @@ class OpenAiBot {
   /* add these env variables to .env as well
     AZURE_OPENAI_ENDPOINT,
     AZURE_OPENAI_API_KEY,
-    OPENAI_API_VERSION
+    OPENAI_API_VERSION,
+    AZURE_OPENAI_DEPLOYMENT
   */
   constructor(private botConversation: BotConversationWebSocket) {
     if (process.env.OPENAI_API_KEY) {
@@ -189,7 +190,8 @@ class OpenAiBot {
 }
 
 const api = new BotApiWebSocket().listen({
-  port: 8083,
+  host:process.env.LISTEN_HOST || '0.0.0.0',
+  port: process.env.LISTEN_PORT ? parseInt(process.env.LISTEN_PORT, 10) : 8083,
   token: process.env.ACCESS_TOKEN || 'TOKEN'
 }, () => {
   console.info(VAIC, `Bot API listening on port ${api.port}`);

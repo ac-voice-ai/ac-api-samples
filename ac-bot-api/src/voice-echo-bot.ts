@@ -10,6 +10,8 @@ import {
 } from '@audiocodes/ac-bot-api';
 
 import { IncomingMessage } from 'http';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const welcomeBuffer = Buffer.from(await fsp.readFile(path.resolve(import.meta.dirname, 'static/welcome-prompt-16k.raw')));
 const echoTime = 3000; // milliseconds
@@ -69,7 +71,8 @@ class VoiceEchoBot {
 }
 
 const api = new BotApiWebSocket().listen({
-  port: 8080,
+  host:process.env.LISTEN_HOST || '0.0.0.0',
+  port: process.env.LISTEN_PORT ? parseInt(process.env.LISTEN_PORT, 10) : 8080,
   token: process.env.ACCESS_TOKEN || 'TOKEN'
 }, () => {
   console.info(`Bot API listening on port ${api.port}`);
