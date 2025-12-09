@@ -60,7 +60,40 @@ The servers are written in Typescript.
     "providers": [{
       "name": "my-bot",
       "type": "ac-api",
-      "botURL": "http://bot-server:8050",
+      "botURL": "ws://bot-server:8050",
+      "credentials": {
+        "token": "MyS3cr3tT0k3n"
+      }
+    }]
+  }
+  ```
+
+* [OpenAI Bot](ac-bot-api/openai-bot) :
+  A bot that integrates with OpenAI's GPT models to provide AI-driven responses.
+
+  To use the OpenAI bot, you need to set the following environment variables:
+  - `ACCESS_TOKEN` - Authentication token for the bot API
+  - `OPENAI_API_KEY` - Your OpenAI API key (for OpenAI)
+  - `LISTEN_HOST` - Host address to listen on (optional, default is 0.0.0.0)
+  - `LISTEN_PORT` - Port number to listen on (optional, default is 8083)
+
+
+  For OpenAI use these environment variables:
+  - `OPENAI_API_KEY` - Your OpenAI API key
+  
+  For Azure OpenAI, use these environment variables **instead**:
+  - `AZURE_OPENAI_ENDPOINT` - Your Azure OpenAI endpoint URL
+  - `AZURE_OPENAI_API_KEY` - Your Azure OpenAI API key
+  - `AZURE_OPENAI_DEPLOYMENT` - Your Azure OpenAI deployment name
+  - `OPENAI_API_VERSION` - The API version to use
+
+  Example configuration:
+  ```json
+  {
+    "providers": [{
+      "name": "openai-bot",
+      "type": "ac-api",
+      "botURL": "http://bot-server:8083",
       "credentials": {
         "token": "MyS3cr3tT0k3n"
       }
