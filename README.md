@@ -33,7 +33,7 @@ The servers are written in Typescript.
   }
   ```
 * [WebSocket Mode](ac-bot-api) \[[API documentation](https://techdocs.audiocodes.com/voice-ai-connect/#Bot-API/ac-bot-api-mode-websocket.htm)\]:
-  A bot that echos incoming voice or text.
+  A bot that echos incoming [voice](ac-bot-api/src/voice-echo-bot.ts) or [text](ac-bot-api/src/text-echo-bot.ts).
 
   To use the bot, you need to set the environment variable ACCESS_TOKEN for running the bot, and configure it accordingly in VoiceAI Connect.
 
@@ -68,7 +68,7 @@ The servers are written in Typescript.
   }
   ```
 
-* [OpenAI Bot](ac-bot-api/openai-bot) :
+* [OpenAI Bot](ac-bot-api/src/openai-bot.ts) :
   A bot that integrates with OpenAI's GPT models to provide AI-driven responses.
 
   To use the OpenAI bot, you need to set the following environment variables:
